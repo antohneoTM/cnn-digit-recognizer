@@ -2,12 +2,15 @@ import PIL
 import torch
 import torchvision
 
+import os
+
 from cnn_model import Model
 
 from pathlib import Path
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 MODEL_PATH = Path(__file__).parent.parent / "model" / "digit-recognizer.pth"
+SAMPLE_IMG_PATH = Path(__file__).parent.parent / "sample_images"
 
 
 def process_image(image_path):
@@ -27,6 +30,9 @@ def process_image(image_path):
 
 
 def predict_image(image_path, model_path, device):
+    """Predict digit of single image with trained model"""
+
+    # Load model into an evaluation state
     model = Model().to(device)
     model.load_state_dict(torch.load(model_path, map_location=device))
     model.eval()
@@ -41,6 +47,23 @@ def predict_image(image_path, model_path, device):
 
 
 if __name__ == "__main__":
-    import sys
-    image_path = sys.argv[1]
-    predict_image(image_path, MODEL_PATH, DEVICE)
+    # Load model into an evaluation state
+    model = Model().to(DEVICE)
+    model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
+    model.eval()
+
+    # Search through every directory in 'sample_images' directory
+    # and predict the image within each directory
+    for root, dirs, files in os.walk(SAMPLE_IMG_PATH):
+        print("Predicting images within:", root)
+
+        for file in files:
+            print(f"Predicting file: {file}")
+
+            input_tensor = process_image(root+"/"+file)
+
+            with torch.no_grad():
+                output = model(input_tensor)
+                predicted_class = torch.argmax(output, dim=1).item()
+            print(f"Predicted Digit: {predicted_class}")
+        print("")
