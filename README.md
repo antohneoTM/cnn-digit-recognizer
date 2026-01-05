@@ -18,7 +18,7 @@ While the database doesn't contain high resolution images of real world digits, 
 PyTorch is a very popular machine learning library used for powerful deep learning researched and training Artifical Intelligence models for various programming languages. (But most commonly Python)
 Quickly rising to the industry standard for machine learning in 2026 it was the ideal option for this project.
 
-You can learn more about PyTorch and the PyTorch foundation <a href="pytorch.org" target="_blank">here</a>
+You can learn more about PyTorch and the PyTorch foundation <a href="https://pytorch.org" target="_blank">here</a>
 
 ## Instructions
 ### Requirements
