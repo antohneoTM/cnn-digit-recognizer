@@ -23,7 +23,8 @@ class Model(nn.Module):
                 in_channels=32,
                 out_channels=32,
                 kernel_size=5,
-                padding=2),
+                padding=2
+            ),
             nn.BatchNorm2d(32),
             nn.Dropout(0.25),
             nn.ReLU(),

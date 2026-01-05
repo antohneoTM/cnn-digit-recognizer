@@ -1,16 +1,9 @@
+import os
+
 import PIL
 import torch
 import torchvision
-
-import os
-
 from cnn_model import Model
-
-from pathlib import Path
-
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-MODEL_PATH = Path(__file__).parent.parent / "model" / "digit-recognizer.pth"
-SAMPLE_IMG_PATH = Path(__file__).parent.parent / "sample_images"
 
 
 def process_image(image_path):
@@ -37,33 +30,23 @@ def predict_image(image_path, model_path, device):
     model.load_state_dict(torch.load(model_path, map_location=device))
     model.eval()
 
-    input_tensor = process_image(image_path)
-
-    with torch.no_grad():
-        output = model(input_tensor)
-        predicted_class = torch.argmax(output, dim=1).item()
-
-    print(f"Predicted Digit: {predicted_class}")
-
-
-if __name__ == "__main__":
-    # Load model into an evaluation state
-    model = Model().to(DEVICE)
-    model.load_state_dict(torch.load(MODEL_PATH, map_location=DEVICE))
-    model.eval()
-
     # Search through every directory in 'sample_images' directory
     # and predict the image within each directory
-    for root, dirs, files in os.walk(SAMPLE_IMG_PATH):
+    for root, dirs, files in os.walk(image_path):
         print("Predicting images within:", root)
 
         for file in files:
             print(f"Predicting file: {file}")
 
-            input_tensor = process_image(root+"/"+file)
+            try:
+                input_tensor = process_image(root + "/" + file)
 
-            with torch.no_grad():
-                output = model(input_tensor)
-                predicted_class = torch.argmax(output, dim=1).item()
-            print(f"Predicted Digit: {predicted_class}")
+                with torch.no_grad():
+                    output = model(input_tensor)
+                    predicted_class = torch.argmax(output, dim=1).item()
+                print(f"Predicted Digit: {predicted_class}")
+
+            except Exception as e:
+                print(f"An unexpected error occured: {e}")
+
         print("")

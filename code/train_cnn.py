@@ -1,5 +1,3 @@
-# from pathlib import Path
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -25,7 +23,7 @@ def train_cnn(train_loader, model_path, device):
 
         running_loss = 0.0  # Tracks loss of each epoch
 
-        # When 20 epochs are reached lower learning rate for accurate training
+        # When 20 epochs are reached lower learning rate for improved training
         if epoch >= 20:
             learning_rate = 0.0001
 

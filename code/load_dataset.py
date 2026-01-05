@@ -37,13 +37,16 @@ def load_dataset(batch_size):
 def load_train_dataset(batch_size):
     """Load MNIST for train dataset and returns it"""
 
+    # Defines transformation for training set images
     transform = torchvision.transforms.Compose(
         [
+            # Default MNIST transforms
             torchvision.transforms.ToTensor(),
             torchvision.transforms.Normalize((0.1307,), (0.3081,)),
         ]
     )
 
+    # Train sets created and transformed into an universal format
     train_dataset = datasets.MNIST(
         root=".data", train=True, download=True, transform=transform
     )
