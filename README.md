@@ -40,13 +40,13 @@ You can learn more about PyTorch and the PyTorch foundation <a href="https://pyt
     requirements.txt includes more detailed information regarding the installed packages
 
     or:\
-    `pip install torch`
+    `pip install torch`\
     `pip install torchvision`
 
 ### How to run
 1. Open the project's root directory in a terminal
 2. Active your Python environment
-3. Make sure pygame package is installed and check for compatible version\
+3. Make sure Python packages are installed and check for compatible version\
     `pip list`
 
     Should give an output like:
