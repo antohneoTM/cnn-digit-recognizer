@@ -22,7 +22,7 @@ You can learn more about PyTorch and the PyTorch foundation <a href="https://pyt
 
 ## Instructions
 ### Requirements
-- Project files avaiable on this repo:\
+- Project files avaiable on this repo:
 
     `git clone git@github.com:antohneoTM/cnn-digit-recognizer.git`
 
