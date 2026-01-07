@@ -39,7 +39,7 @@ def predict_image(image_path, model_path, device):
             print(f"Predicting file: {file}")
 
             try:
-                input_tensor = process_image(root + "/" + file)
+                input_tensor = process_image(root + "/" + file)  # Image path
 
                 with torch.no_grad():
                     output = model(input_tensor)
