@@ -1,4 +1,4 @@
-# Convolutional Neural Network Digit Recognizer
+# Convolutional Neural Network: Hand Written Digit Recognizer
 Developed By: Antonio Camacho\
 Email: camacho.ant.626@gmail.com\
 LinkedIn: <a href="https://www.linkedin.com/in/antcamacho" target="_blank">/in/antcamacho</a>
@@ -51,7 +51,7 @@ You can learn more about PyTorch and the PyTorch foundation <a href="https://pyt
     `pip install torch`\
     `pip install torchvision`
 
-###How to run
+### How to run
 1. Open the project's root directory in a terminal
 2. Active your Python environment
 3. Make sure Python packages are installed and check for compatible version\
